@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
+    "declaration": true,
     "esModuleInterop": true,
     // Note: we need dom because supertest's types reference some browser types
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
-    "noEmit": true,
+    "outDir": "dist",
     "resolveJsonModule": true,
     "strict": true,
     "target": "es2017",
