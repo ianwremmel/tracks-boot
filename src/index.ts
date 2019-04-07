@@ -1,3 +1,5 @@
+import {Server} from 'http';
+
 import express from 'express';
 
 interface BootOptions {
@@ -10,26 +12,27 @@ interface BootOptions {
  */
 export async function boot(
   {logger = console, port}: BootOptions,
-  app: express.Application
-) {
-  app = await Promise.resolve(app);
+  app: express.Application | Promise<express.Application>
+): Promise<Server> {
+  const notAPromiseApp = await Promise.resolve(app);
 
-  const server = app.listen(port, () => {
-    const address = server.address();
-    if (!address) {
-      logger.warn(
-        'server seems to be listening but did not produce any address info'
-      );
-      return;
-    }
-    if (typeof address === 'string') {
-      logger.info(`Server listening at ${address}`);
-    } else {
-      logger.info(`Server listening port ${address.port} ${address.address}`);
-    }
+  return await new Promise((resolve, reject) => {
+    const server = notAPromiseApp.listen(port, () => {
+      const address = server.address();
+      if (!address) {
+        logger.warn(
+          'server seems to be listening but did not produce any address info'
+        );
+        return;
+      }
+      if (typeof address === 'string') {
+        logger.info(`Server listening at ${address}`);
+      } else {
+        logger.info(`Server listening port ${address.port} ${address.address}`);
+      }
+      resolve(server);
+    });
   });
-
-  return server;
 }
 
 interface prepareCallback {
