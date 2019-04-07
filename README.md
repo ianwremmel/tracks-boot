@@ -46,7 +46,7 @@ without needing to test over http.
 First, import tracks boot
 
 ```js
-import {boot, prepare} from './lib/boot';
+import {boot, prepare} from '@ianwremmel/tracks-boot';
 ```
 
 Next, create your app factory (yes, I said "factory"; it's not that bad. it's
@@ -91,6 +91,10 @@ if (require.main === module) {
     boot({logger: console, port}, create());
 }
 ```
+
+> boot returns a `Promise<http.Server>`, so if you need to shut it down
+> programmatically (vs killing the process), you can use e.g.
+> `boot(...).then((server) => server.close());`
 
 Finally, we can use supertest to test our app without binding it to a port
 
