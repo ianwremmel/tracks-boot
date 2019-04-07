@@ -11,8 +11,11 @@
   "scripts": {
     "build": "npm-run-all build:*",
     "build:readme": "markdown-toc -i --bullets='-' --maxdepth=3  README.md  && prettier --write README.md",
+    "prebuild:es": "rimraf dist",
     "build:es": "babel --ignore '**/*.d.ts' --extensions '.js,.ts' -d dist src",
-    "build:types": "tsc --emitDeclarationOnly",
+    "prebuild:types": "rimraf .tmp",
+    "build:types": "tsc --emitDeclarationOnly --outDir .tmp",
+    "postbuild:types": "cp -r .tmp/src/* dist && rimraf .tmp",
     "eslint": "eslint --ignore --ignore-path .gitignore --ext .js --ext .ts",
     "lint": "npm-run-all lint:*",
     "lint:changelog": "commitlint --from origin/master --to HEAD",
