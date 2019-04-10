@@ -12,7 +12,7 @@
     "build": "npm-run-all build:*",
     "build:readme": "markdown-toc -i --bullets='-' --maxdepth=3  README.md  && prettier --write README.md",
     "prebuild:es": "rimraf dist",
-    "build:es": "babel --ignore '**/*.d.ts' --extensions '.js,.ts' -d dist src",
+    "build:es": "babel --source-maps --ignore '**/*.d.ts' --extensions '.js,.ts' -d dist src",
     "prebuild:types": "rimraf .tmp",
     "build:types": "tsc --emitDeclarationOnly --outDir .tmp",
     "postbuild:types": "cp -r .tmp/src/* dist && rimraf .tmp",
