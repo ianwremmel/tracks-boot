@@ -2,39 +2,25 @@ env:
   browser: false
   node: true
 extends:
-  - 'plugin:@ianwremmel/ianwremmel/modern'
+  - plugin:@ianwremmel/ianwremmel/modern
+  - prettier
 overrides:
   - files:
-      - '*.config.js'
-    env:
-      node: true
-    parserOptions:
-      sourceType: 'script'
-    rules:
-      strict:
-        - error
-        - global
-  - files:
-      - '**/*.spec.*'
-      - 'test/*/spec/**/*.*'
-    env:
-      jest: true
-    rules:
-      require-jsdoc: off
-  - files:
       - '**/*.ts'
+      - '**/*.tsx'
+    extends:
+      - plugin:@typescript-eslint/recommended
+      - prettier/@typescript-eslint
+      - plugin:import/typescript
     parser: '@typescript-eslint/parser'
     parserOptions:
-      project: './tsconfig.json'
-    rules:
-      import/export: off
-      import/no-unresolved: off
-      no-redeclare: off
-      # use as types doesn"t count as used
-      no-unused-vars: off
-      valid-jsdoc: off
+      project: ./tsconfig.json
+      sourceType: module
+    plugins:
+      - '@typescript-eslint'
 parserOptions:
-  sourceType: 'module'
+  sourceType: module
 rules:
-  no-restricted-syntax: off
   compat/compat: off
+  no-restricted-syntax: off
+  require-jsdoc: off

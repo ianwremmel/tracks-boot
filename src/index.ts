@@ -16,7 +16,7 @@ export async function boot(
 ): Promise<Server> {
   const notAPromiseApp = await Promise.resolve(app);
 
-  return await new Promise((resolve, reject) => {
+  return await new Promise((resolve) => {
     const server = notAPromiseApp.listen(port, () => {
       const address = server.address();
       if (!address) {
