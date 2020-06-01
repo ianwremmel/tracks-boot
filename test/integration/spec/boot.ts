@@ -6,7 +6,9 @@ import {boot, prepare} from '../../../src';
 
 const PORT = Number(process.env.PORT || 3000);
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 jest.spyOn(global.console, 'info').mockImplementation(() => {});
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 jest.spyOn(global.console, 'warn').mockImplementation(() => {});
 
 describe('boot', () => {

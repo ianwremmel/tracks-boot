@@ -28,6 +28,13 @@ module aims to streamline that clunkiness as much as possible.
 ## Table of Contents
 
 <!-- toc -->
+
+-   [Install](#install)
+-   [Usage](#usage)
+-   [Maintainer](#maintainer)
+-   [Contribute](#contribute)
+-   [License](#license)
+
 <!-- tocstop -->
 
 ## Install
