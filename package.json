@@ -47,7 +47,6 @@
     "@types/supertest": "^2.0.7",
     "@typescript-eslint/eslint-plugin": "^3.0.2",
     "@typescript-eslint/parser": "^3.0.2",
-    "condition-circle": "^2.0.2",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-compat": "^3.7.0",
@@ -77,9 +76,6 @@
       "commit-msg": "commitlint -e",
       "pre-commit": "lint-staged"
     }
-  },
-  "release": {
-    "verifyConditions": "condition-circle"
   },
   "publishConfig": {
     "access": "public"
