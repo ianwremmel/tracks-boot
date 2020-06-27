@@ -13,7 +13,7 @@
     "build:readme": "markdown-toc -i --bullets='-' --maxdepth=3  README.md  && prettier --write README.md",
     "prebuild:es": "rimraf dist",
     "build:es": "babel --copy-files --source-maps --ignore '**/*.snap' --ignore '**/*.d.ts' --ignore '**/*.spec.*' --ignore '**.*.test.*' --extensions '.ts,.js,.jsx,.tsx' -d dist src",
-    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "build:types": "tsc --emitDeclarationOnly --outDir .tmp/dist && mv .tmp/dist/src dist && rm -rf .tmp",
     "eslint": "eslint --ignore --ignore-path .gitignore --ext .js --ext .ts",
     "lint": "npm-run-all lint:*",
     "lint:changelog": "commitlint --from origin/master --to HEAD",
